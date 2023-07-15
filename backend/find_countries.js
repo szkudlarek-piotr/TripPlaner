@@ -1,0 +1,33 @@
+const fs = require('fs')
+const { stringify } = require('querystring')
+
+const countries_file = fs.readFileSync("C:/Users/Piotr Szkudlarek/Desktop/Osobiste/miasta/backend/countries.json", 'utf8')
+let countriesArr =  JSON.parse(countries_file)
+console.log(typeof(countriesArr))
+function FilterIt(substring){
+    let stringifiedSubsting = String(substring)
+    let filteredArray = []
+    debugger
+    console.log(stringifiedSubsting)
+    let typeOfSubstring = typeof(stringifiedSubsting)
+    console.log(typeOfSubstring)
+    debugger
+    let capitalizedSubstring = substrstringifiedSubstinging.toUpperCase()
+    debugger
+    for (let i = 0; i<251;i++){
+        let checkedCountry = countriesArr[i]
+        let countryName = checkedCountry.name
+        let countryCode = checkedCountry.alpha_2
+        let capitalizedName = countryName.toUpperCase()
+        if (capitalizedName.includes(capitalizedSubstring)) {
+            let flagToAdd = countryCode.toLowerCase()+'.png'
+            let objToPush = {"name": countryName, "flag": flagToAdd}
+            filteredArray.push(objToPush) 
+        }
+    }
+    const returnedArray = JSON.stringify(filteredArray)
+    console.log(returnedArray)
+    return returnedArray
+}
+FilterIt("st")
+//module.exports = FilterIt

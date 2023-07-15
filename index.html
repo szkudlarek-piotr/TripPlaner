@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <div id="container">
+            <input type="text" id="countriesInput" onkeyup="sendGetRequest()"/>
+        </div>
+    <script>
+        function readInputField(){
+            let input_txt = document.getElementById('countriesInput').value
+            if (input_txt.length > 1) {
+                console.log(input_txt)
+            }
+        return input_txt
+        }
+        function sendGetRequest(){
+            console.log("Uruchamiam funkcję..")
+            console.log(`będę pytał o ${readInputField()}.`)
+            const xhr = new XMLHttpRequest();
+            xhr.open("GET", "http://localhost:3000/countries")
+            xhr.onreadystatechange = function() 
+            {
+                console.log("wchodzimy...")
+                // Typical action to be performed when the document is ready:
+            }
+            xhr.send(readInputField());
+        }
+    </script>
+    </body>
+</html>
