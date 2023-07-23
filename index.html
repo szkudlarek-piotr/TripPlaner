@@ -9,7 +9,7 @@
         </div>
     <script>
         function sendGetRequest() {
-            let input_txt = document.getElementById('countriesInput').value
+            const input_txt = document.getElementById('countriesInput').value
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:3000/countries")
             xhr.setRequestHeader("Content-type")
