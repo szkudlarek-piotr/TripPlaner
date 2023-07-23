@@ -8,8 +8,7 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/countries', (request, response) => {
-    console.log("Dupa")
-    console.log(request)
+    console.log(request.query.search)
 })
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
