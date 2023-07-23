@@ -8,7 +8,8 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/countries', (request, response) => {
-    console.log(request.query.search)
+    const searchSubstring = request.query.search
+    response.send(filteredCountries(searchSubstring))
 })
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
