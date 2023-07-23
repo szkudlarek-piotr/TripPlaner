@@ -13,9 +13,8 @@
         function sendGetRequest() {
             const input_txt = document.getElementById('countriesInput').value
             const xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:3000/countries?search="+input_txt)
+            xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
             xhr.onreadystatechange = () => {
-                console.log(xhr.readyState)
             if (xhr.readyState === XMLHttpRequest.DONE) {
                 
                 const status = xhr.status;
