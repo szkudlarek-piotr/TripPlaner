@@ -22,7 +22,7 @@ function FilterIt(substring){
         }
     }
     const returnedArray = JSON.stringify(filteredArray)
-    //return returnedArray
+    return returnedArray
 }
-FilterIt("str")
-//module.exports = FilterIt
+//FilterIt("str")
+module.exports = FilterIt

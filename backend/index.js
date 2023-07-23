@@ -8,10 +8,8 @@ app.use(cors())
 app.use(express.json())
 
 app.get('/countries', (request, response) => {
-    let inputTxt = request.body
-    let filtratedArray = filteredCountries(inputTxt)
-    console.log(filtratedArray)
-
+    console.log("Dupa")
+    console.log(request)
 })
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
