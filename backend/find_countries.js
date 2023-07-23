@@ -1,6 +1,7 @@
 const fs = require('fs')
-
-const countries_file = fs.readFileSync("C:/Users/Piotr Szkudlarek/Desktop/Osobiste/miasta/backend/countries.json", 'utf8')
+const path = require('path')
+const countriesPath =path.join(process.cwd(), 'backend', 'countries.json')
+const countries_file = fs.readFileSync(countriesPath, 'utf8')
 let countriesArr =  JSON.parse(countries_file)
 console.log(typeof(countriesArr))
 function FilterIt(substring){
