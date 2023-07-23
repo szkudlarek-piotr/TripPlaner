@@ -1,35 +1,33 @@
 <!DOCTYPE html>
 <html>
 
-    <head>
-        <link rel="stylesheet" href="style.css">
-    </head>
+<head>
+    <link rel="stylesheet" href="style.css">
+</head>
 
-    <body>
-        <div id="container">
+<body>
+    <div id="container">
         <input type="text" id="countriesInput" onkeyup="sendGetRequest()" />
-        </div>
+    </div>
     <script>
         function sendGetRequest() {
             const input_txt = document.getElementById('countriesInput').value
             const xhr = new XMLHttpRequest();
             xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
             xhr.onreadystatechange = () => {
-            if (xhr.readyState === XMLHttpRequest.DONE) {
-                
-                const status = xhr.status;
-                console.log("Jedziemy")
-                if (status == 0 || (status >= 200 && status < 400)) {
-                    console.log("Działa!");
-                } else {
-                    console.log("Not yet...")
+                if (xhr.readyState === XMLHttpRequest.DONE) {
+                    const status = xhr.status;
+                    const countriesToShow = JSON.parse(xhr.responseText)
+
+                    for (let i = 0; i< countriesToShow.length;i++){
+                        console.log(countriesToShow[i].name)
+                    }
                 }
-            }
             };
             xhr.send(input_txt);
 
         }
     </script>
-    </body>
+</body>
 
 </html>
