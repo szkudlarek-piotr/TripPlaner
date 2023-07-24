@@ -1,6 +1,6 @@
 const fs = require('fs')
 const path = require('path')
-const countriesPath =path.join(process.cwd(), 'countries.json')
+const countriesPath =path.join(process.cwd(),"backend", 'countries.json')
 const countries_file = fs.readFileSync(countriesPath, 'utf8')
 let countriesArr =  JSON.parse(countries_file)
 function FilterIt(substring){
