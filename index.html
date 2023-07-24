@@ -12,22 +12,23 @@
     <script>
         function sendGetRequest() {
             const input_txt = document.getElementById('countriesInput').value
-            const xhr = new XMLHttpRequest();
-            xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
-            xhr.onreadystatechange = () => {
-                if (xhr.readyState === XMLHttpRequest.DONE) {
-                    const status = xhr.status;
-                    const countriesToShow = JSON.parse(xhr.responseText)
-                    for (let i = 0; i< countriesToShow.length;i++){
-                        //console.log(countriesToShow[i].name)
-                        let boldedCountryName = boldSearchInput(input_txt, countriesToShow[i].name)
-                        console.log(boldedCountryName)
-                        
+            if (input_txt.length > 1) {
+                const xhr = new XMLHttpRequest();
+                xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
+                xhr.onreadystatechange = () => {
+                    if (xhr.readyState === XMLHttpRequest.DONE) {
+                        const status = xhr.status;
+                        const countriesToShow = JSON.parse(xhr.responseText)
+                        for (let i = 0; i< countriesToShow.length;i++){
+                            //console.log(countriesToShow[i].name)
+                            let boldedCountryName = boldSearchInput(input_txt, countriesToShow[i].name)
+                            console.log(boldedCountryName)
+
+                        }
                     }
-                }
-            };
+                };
             xhr.send(input_txt);
-        }
+        }}
         function boldSearchInput(inputText, countryName) {
             let capitalizedInput = inputText.toUpperCase()
             let capitalizedCountryName = countryName.toUpperCase()
