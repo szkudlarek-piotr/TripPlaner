@@ -15,7 +15,7 @@ function FilterIt(substring){
         let capitalizedName = countryName.toUpperCase()
         if (capitalizedName.includes(capitalizedSubstring)) {
             let flagToAdd = countryCode.toLowerCase()+'.png'
-            let objToPush = {"name": countryName, "flag": flagToAdd}
+            let objToPush = {"name": countryName, "flag": flagToAdd, "code": countryCode}
             filteredArray.push(objToPush)
         }
     }
