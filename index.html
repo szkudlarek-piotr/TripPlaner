@@ -18,14 +18,26 @@
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     const status = xhr.status;
                     const countriesToShow = JSON.parse(xhr.responseText)
-
                     for (let i = 0; i< countriesToShow.length;i++){
-                        console.log(countriesToShow[i].name)
+                        //console.log(countriesToShow[i].name)
+                        let boldedCountryName = boldSearchInput(input_txt, countriesToShow[i].name)
+                        console.log(boldedCountryName)
+                        
                     }
                 }
             };
             xhr.send(input_txt);
-
+        }
+        function boldSearchInput(inputText, countryName) {
+            let capitalizedInput = inputText.toUpperCase()
+            let capitalizedCountryName = countryName.toUpperCase()
+            const boldStartIndex = capitalizedCountryName.indexOf(capitalizedInput)
+            const boldStopIndex = boldStartIndex + inputText.length
+            const beforeText = countryName.substring(0, boldStartIndex)
+            const boldedText = countryName.substring(boldStartIndex, boldStopIndex)
+            const afterText = countryName.substring(boldStopIndex)
+            const boldedCountry = `${beforeText}<b>${boldedText}</b>${afterText}`
+            return boldedCountry
         }
     </script>
 </body>
