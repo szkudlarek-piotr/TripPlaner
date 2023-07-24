@@ -6,7 +6,6 @@ let countriesArr =  JSON.parse(countries_file)
 function FilterIt(substring){
     let stringifiedSubsting = String(substring)
     let filteredArray = []
-    let typeOfSubstring = typeof(stringifiedSubsting)
     let capitalizedSubstring = stringifiedSubsting.toUpperCase()
     for (let i = 0; i<251;i++){
         let checkedCountry = countriesArr[i]
