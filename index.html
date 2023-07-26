@@ -7,10 +7,15 @@
 
 <body>
     <div id="container">
-        <input type="text" id="countriesInput" onkeyup="sendGetRequest()" />
+        <input type="text" id="countriesInput" onkeyup="printArr()" />
     </div>
     <script>
-        function sendGetRequest() {
+
+        function countriesArrToDiv() {
+            let allCountriesDivs = document.createElement("div")
+            allCountriesDivs.setAttribute("class", "autocomplete-items")
+            allCountriesDivs.innerHTML = ""
+
             const input_txt = document.getElementById('countriesInput').value
             if (input_txt.length > 1) {
                 const xhr = new XMLHttpRequest();
@@ -19,14 +24,30 @@
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         const status = xhr.status;
                         const countriesToShow = JSON.parse(xhr.responseText)
-                        for (let i = 0; i< countriesToShow.length;i++){
-                            let boldedCountryName = boldSearchInput(input_txt, countriesToShow[i].name)
+                        countriesDivs = countriesToShow.map(function(country){
+                            let countryName = country.name
+                            let countryFlag = country.flag
+                            let boldedName = boldCountryName(input_txt, countryName)
+                            let countryDiv =`<div class="country_div" value="${countryName}">
+                                                <div class="country_name">${boldedName}</div>
+                                                <div class="flag"><img src="flags/${countryFlag}" alt="flag of ${countryName}"></div>
+                                            </div>`
+                            console.log(countryDiv)
+                            return countryDiv
+                        })
+                        console.log(countriesDivs)
+                        for (let i=0; i < countriesDivs.length; i++){
+                            countryToAdd = countriesDivs[i]
+                            allCountriesDivs.innerHTML += countryToAdd
                         }
+                        console.log(allCountriesDivs)
                     }
                 };
             xhr.send(input_txt);
+            return allCountriesDivs
         }}
-        function boldSearchInput(inputText, countryName) {
+
+        function boldCountryName(inputText, countryName) {
             let capitalizedInput = inputText.toUpperCase()
             let capitalizedCountryName = countryName.toUpperCase()
             const boldStartIndex = capitalizedCountryName.indexOf(capitalizedInput)
