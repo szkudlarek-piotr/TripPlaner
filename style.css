@@ -36,17 +36,25 @@ input[type=submit] {
     right:0;
 }
 /*single div with data about the country is called 'country'*/
-.autocomplete-items div {
+.country_div {
     padding: 10px;
     cursor: pointer;
     background-color: #fff;
     border-bottom: #d4d4d4;
 }
-.autocomplete-items div:hover {
+.country_div:hover {
     background-color: #e9e9e9;
 }
 .autocomplete-active {
     /*when navigating through the items using the arrow keys:*/
     background-color: DodgerBlue !important;
     color: #ffffff;
-  }
+}
+.country_name {
+    width: 70%;
+}
+.flag {
+    height: 100%;
+}
+
+
