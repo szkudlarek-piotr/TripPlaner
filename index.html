@@ -7,16 +7,40 @@
 
 <body>
     <div id="container">
-        <input type="text" id="countriesInput" onkeyup="printArr()" />
+        <div id="autocomplete">
+            <input type="text" id="countriesInput" onkeyup="showSuggestions()" />
+        </div>
     </div>
     <script>
+        
 
-        function countriesArrToDiv() {
-            let allCountriesDivs = document.createElement("div")
-            allCountriesDivs.setAttribute("class", "autocomplete-items")
-            allCountriesDivs.innerHTML = ""
+        function displayData(countryDivs) {
+            let suggestionsDiv = document.getElementById("allCountriesSuggestions")
+            for (let i=0; i<countryDivs.length; i++) {
+                let checked_country = countryDivs[i]
+                console.log(checked_country)
+                suggestionsDiv.appendChild(checked_country)
+            }
+        }
 
+        function showSuggestions() {
+            let autocompleteDiv = document.getElementById("autocomplete")
+            let inputValue = document.getElementById("countriesInput")
+            if (autocompleteDiv.childElementCount === 1) {
+                let suggestionsDiv = document.createElement("div")
+                suggestionsDiv.setAttribute("class", "autocomplete-items")
+                suggestionsDiv.setAttribute("id", "allCountriesSuggestions")
+            }
+
+            getCountriesDivs(displayData) 
+        }
+
+        function getCountriesDivs(callback) {
+            // let allCountriesDivs = document.createElement("div")
+            // allCountriesDivs.setAttribute("class", "autocomplete-items")
+            // allCountriesDivs.innerHTML = ""
             const input_txt = document.getElementById('countriesInput').value
+
             if (input_txt.length > 1) {
                 const xhr = new XMLHttpRequest();
                 xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
@@ -24,7 +48,7 @@
                     if (xhr.readyState === XMLHttpRequest.DONE) {
                         const status = xhr.status;
                         const countriesToShow = JSON.parse(xhr.responseText)
-                        countriesDivs = countriesToShow.map(function(country){
+                        const countriesDivs = countriesToShow.map(function(country){
                             let countryName = country.name
                             let countryFlag = country.flag
                             let boldedName = boldCountryName(input_txt, countryName)
@@ -32,19 +56,15 @@
                                                 <div class="country_name">${boldedName}</div>
                                                 <div class="flag"><img src="flags/${countryFlag}" alt="flag of ${countryName}"></div>
                                             </div>`
-                            console.log(countryDiv)
                             return countryDiv
                         })
-                        console.log(countriesDivs)
-                        for (let i=0; i < countriesDivs.length; i++){
-                            countryToAdd = countriesDivs[i]
-                            allCountriesDivs.innerHTML += countryToAdd
-                        }
-                        console.log(allCountriesDivs)
+                        console.log('data got', countriesDivs)
+                       
+                        callback(countriesDivs)
                     }
                 };
+
             xhr.send(input_txt);
-            return allCountriesDivs
         }}
 
         function boldCountryName(inputText, countryName) {
