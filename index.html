@@ -15,11 +15,18 @@
         
 
         function displayData(countryDivs) {
-            let suggestionsDiv = document.getElementById("allCountriesSuggestions")
+            let suggestionsDiv = document.getElementById("autocomplete")
+            debugger
+            while (suggestionsDiv.childElementCount > 2) {
+                suggestionsDiv.removeChild(suggestionsDiv.lastChild)
+            }
+            debugger
             for (let i=0; i<countryDivs.length; i++) {
                 let checked_country = countryDivs[i]
+                debugger
                 console.log(checked_country)
-                suggestionsDiv.appendChild(checked_country)
+                suggestionsDiv.innerHTML += checked_country
+                debugger
             }
         }
 
@@ -36,9 +43,7 @@
         }
 
         function getCountriesDivs(callback) {
-            // let allCountriesDivs = document.createElement("div")
-            // allCountriesDivs.setAttribute("class", "autocomplete-items")
-            // allCountriesDivs.innerHTML = ""
+
             const input_txt = document.getElementById('countriesInput').value
 
             if (input_txt.length > 1) {

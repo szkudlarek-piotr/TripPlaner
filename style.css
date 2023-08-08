@@ -25,11 +25,13 @@ input[type=submit] {
     background-color: dodgerblue;
     color: #fff;
 }
+
 .autocomplete-items {
     position: absolute;
     border: 1px solid #d4d4d4;
     border-bottom: none;
     border-top: none;
+    height:100px;
     z-index: 99;
     top:100%;
     left:0;
@@ -51,10 +53,19 @@ input[type=submit] {
     color: #ffffff;
 }
 .country_name {
-    width: 70%;
+    width: 93%;
+    margin-top: auto;
+    margin-bottom: auto;
+    display: inline-block;
 }
 .flag {
-    height: 100%;
+    width: 5%;
+    display: inline-block;
+}
+.flag img {
+    display: inline-block;
+    height: 20px;
+    border: 1px solid black;
 }
 
 
