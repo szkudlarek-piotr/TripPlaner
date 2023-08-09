@@ -12,22 +12,34 @@
         </div>
     </div>
     <script>
-        
+        function clearCountryDivs() {
+            let autocompleteDiv = document.getElementById("autocomplete")
+            let childrenArr = autocompleteDiv.children
+            while (autocompleteDiv.childElementCount > 1) {
+                autocompleteDiv.lastChild.remove()
+            }
+            
+        } 
 
         function displayData(countryDivs) {
-            let suggestionsDiv = document.getElementById("autocomplete")
-            debugger
-            while (suggestionsDiv.childElementCount > 2) {
-                suggestionsDiv.removeChild(suggestionsDiv.lastChild)
+            clearCountryDivs()
+            //nazwa wynika z tego czy nie wiem czy mogę użyć bez dwójki
+            let autocompleteDiv2 = document.getElementById("autocomplete")
+
+            console.log(countryDivs)
+            let numberOfCountries = countryDivs.length
+            for (let i = 0; i < numberOfCountries; i++) {
+                let processedCountry = countryDivs[i]
+                let innerContent = processedCountry.inner_text
+                let code = processedCountry.code
+                let createdDiv = document.createElement("div")
+                createdDiv.setAttribute("class", "country_div")
+                createdDiv.setAttribute("id", code)
+                createdDiv.innerHTML = innerContent
+                autocompleteDiv2.appendChild(createdDiv)
+
             }
-            debugger
-            for (let i=0; i<countryDivs.length; i++) {
-                let checked_country = countryDivs[i]
-                debugger
-                console.log(checked_country)
-                suggestionsDiv.innerHTML += checked_country
-                debugger
-            }
+            
         }
 
         function showSuggestions() {
@@ -57,14 +69,14 @@
                             let countryName = country.name
                             let countryFlag = country.flag
                             let boldedName = boldCountryName(input_txt, countryName)
-                            let countryDiv =`<div class="country_div" value="${countryName}">
-                                                <div class="country_name">${boldedName}</div>
-                                                <div class="flag"><img src="flags/${countryFlag}" alt="flag of ${countryName}"></div>
-                                            </div>`
-                            return countryDiv
+                            let countryJSON ={inner_text: `<div class="country_name">
+                                                ${boldedName}</div>
+                                            <div class="flag"><img src="flags/${countryFlag}" alt="flag of ${countryName}"></div>`,
+                                            code: countryName}
+                            return countryJSON
                         })
                         console.log('data got', countriesDivs)
-                       
+                        countriesDivsStringified = JSON.stringify(countriesDivs)
                         callback(countriesDivs)
                     }
                 };
