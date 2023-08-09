@@ -23,8 +23,7 @@
 
         function displayData(countryDivs) {
             clearCountryDivs()
-            //nazwa wynika z tego czy nie wiem czy mogę użyć bez dwójki
-            let autocompleteDiv2 = document.getElementById("autocomplete")
+            let autocompleteDiv = document.getElementById("autocomplete")
 
             console.log(countryDivs)
             let numberOfCountries = countryDivs.length
@@ -36,8 +35,7 @@
                 createdDiv.setAttribute("class", "country_div")
                 createdDiv.setAttribute("id", code)
                 createdDiv.innerHTML = innerContent
-                autocompleteDiv2.appendChild(createdDiv)
-
+                autocompleteDiv.appendChild(createdDiv)
             }
             
         }
