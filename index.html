@@ -12,6 +12,11 @@
         </div>
     </div>
     <script>
+        let addedCountries = []
+        function addCountry(countryName) {
+            addedCountries.push(countryName)
+            console.log(addedCountries)
+        }
         function clearCountryDivs() {
             let autocompleteDiv = document.getElementById("autocomplete")
             let childrenArr = autocompleteDiv.children
@@ -22,18 +27,17 @@
         } 
 
         function displayData(countryDivs) {
-            clearCountryDivs()
             let autocompleteDiv = document.getElementById("autocomplete")
-
-            console.log(countryDivs)
             let numberOfCountries = countryDivs.length
             for (let i = 0; i < numberOfCountries; i++) {
                 let processedCountry = countryDivs[i]
                 let innerContent = processedCountry.inner_text
                 let code = processedCountry.code
+                console.log(code)
                 let createdDiv = document.createElement("div")
                 createdDiv.setAttribute("class", "country_div")
                 createdDiv.setAttribute("id", code)
+                createdDiv.setAttribute("onclick", "addCountry("+code+")")
                 createdDiv.innerHTML = innerContent
                 autocompleteDiv.appendChild(createdDiv)
             }
@@ -41,6 +45,7 @@
         }
 
         function showSuggestions() {
+            clearCountryDivs()
             let autocompleteDiv = document.getElementById("autocomplete")
             let inputValue = document.getElementById("countriesInput")
             if (autocompleteDiv.childElementCount === 1) {
@@ -73,7 +78,6 @@
                                             code: countryName}
                             return countryJSON
                         })
-                        console.log('data got', countriesDivs)
                         countriesDivsStringified = JSON.stringify(countriesDivs)
                         callback(countriesDivs)
                     }
