@@ -80,7 +80,7 @@
 
             const input_txt = document.getElementById('countriesInput').value
 
-            if (input_txt.length > 1) {
+            if (input_txt.length > 2) {
                 const xhr = new XMLHttpRequest();
                 xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
                 xhr.onreadystatechange = () => {
