@@ -26,8 +26,14 @@
             let input_txt = document.getElementById('countriesInput')
             input_txt.value = ''
 
+            if (addedCountries.includes(countryName) == false) {
             addedCountries.push(countryName)
             console.log(addedCountries)
+                addedDiv.innerHTML += `${countryName}<br>`
+            }
+            else {
+                console.log(`${countryName} już jest w tablicy!`)
+            }
         }
         function clearCountryDivs() {
             let autocompleteDiv = document.getElementById("autocomplete")
