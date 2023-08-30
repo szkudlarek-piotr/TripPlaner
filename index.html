@@ -20,8 +20,12 @@
     <script>
         let addedCountries = []
         function addCountry(countryName) {
+            const addedDiv = document.getElementById("added_flags")
             //I clear the sugestions
             clearCountryDivs()
+            let input_txt = document.getElementById('countriesInput')
+            input_txt.value = ''
+
             addedCountries.push(countryName)
             console.log(addedCountries)
         }
