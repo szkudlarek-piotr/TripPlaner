@@ -27,8 +27,8 @@
             input_txt.value = ''
 
             if (addedCountries.includes(countryName) == false) {
-            addedCountries.push(countryName)
-            console.log(addedCountries)
+                addedCountries.push(countryName)
+                console.log(addedCountries)
                 addedDiv.innerHTML += `${countryName}<br>`
             }
             else {
@@ -49,7 +49,6 @@
             let numberOfCountries = countryDivs.length
             for (let i = 0; i < numberOfCountries; i++) {
                 let processedCountry = countryDivs[i]
-                console.log(processedCountry)
                 let innerContent = processedCountry.inner_text
                 let name = processedCountry.name
                 //console.log(code)
