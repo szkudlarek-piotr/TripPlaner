@@ -90,3 +90,19 @@ h1 {
 #added_flags {
     font-size: 10px;
 }
+.flags {
+    width: 100px;
+} 
+.added-flag {
+    width: 100px;
+    display: inline-block;
+    border: 1px solid black;
+}
+.addedCountryName {
+    display: inline-block;
+    width: 70%;
+    font-size: 60px;
+}
+.addedCountry {
+    display: inline-block;
+}

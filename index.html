@@ -19,7 +19,8 @@
     </div>
     <script>
         let addedCountries = []
-        function addCountry(countryName) {
+
+        function addCountry(countryName, countryFlag) {
             const addedDiv = document.getElementById("added_flags")
             //I clear the sugestions
             clearCountryDivs()
@@ -29,7 +30,11 @@
             if (addedCountries.includes(countryName) == false) {
                 addedCountries.push(countryName)
                 console.log(addedCountries)
-                addedDiv.innerHTML += `${countryName}<br>`
+                addedDiv.innerHTML += `<div class="addedCountryName">${countryName}</div>`
+                let newDiv = document.createElement("div")
+                newDiv.setAttribute("class", "addedCountry")
+                newDiv.innerHTML = `<img class="added-flag" src="flags/${countryFlag}">`
+                addedDiv.appendChild(newDiv)
             }
             else {
                 console.log(`${countryName} już jest w tablicy!`)
@@ -51,11 +56,11 @@
                 let processedCountry = countryDivs[i]
                 let innerContent = processedCountry.inner_text
                 let name = processedCountry.name
-                //console.log(code)
+                const flagPath = processedCountry.flag
                 let createdDiv = document.createElement("div")
                 createdDiv.setAttribute("class", "country_div")
                 createdDiv.setAttribute("id", name)
-                createdDiv.setAttribute("onclick", `addCountry("${name}")`)
+                createdDiv.setAttribute("onclick", `addCountry("${name}", "${flagPath}")`)
                 createdDiv.innerHTML = innerContent
                 autocompleteDiv.appendChild(createdDiv)
             }
@@ -78,8 +83,9 @@
         function getCountriesDivs(callback) {
 
             const input_txt = document.getElementById('countriesInput').value
-
+            
             if (input_txt.length > 2) {
+                let countryFlag = ""
                 const xhr = new XMLHttpRequest();
                 xhr.open("GET", "http://localhost:3000/countries?search=" + input_txt)
                 xhr.onreadystatechange = () => {
@@ -92,7 +98,7 @@
                             let boldedName = boldCountryName(input_txt, countryName)
                             let countryJSON ={inner_text: `<div class="country_name">
                                                 ${boldedName}</div>
-                                            <div class="flag"><img src="flags/${countryFlag}" alt="flag of ${countryName}"></div>`,
+                                            <div class="flag"><img class="flaga" src="flags/${countryFlag}" alt="flag of ${countryName}"></div>`,
                                             name: countryName,
                                             flag: countryFlag}
                             return countryJSON
