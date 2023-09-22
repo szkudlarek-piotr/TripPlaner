@@ -13,32 +13,39 @@
         <div id="added">
             <h1>Wybrane kraje</h1>
             <div id="added_flags">
-                
+            
             </div>
+            <div class="accept-button">
+                <button >Zatwierdź kraje!</button>
+            </div>
+            
         </div>
     </div>
     <script>
         let addedCountries = []
 
         function addCountry(countryName, countryFlag) {
-            const addedDiv = document.getElementById("added_flags")
+            const addedCountriesDiv = document.getElementById("added_flags")
+            let countryRectangle = document.createElement("div")
             //I clear the sugestions
             clearCountryDivs()
             let input_txt = document.getElementById('countriesInput')
+            countryRectangle.setAttribute("class", "singleCountryDiv")
+            countryRectangle.setAttribute("id", countryName)
+            let added_flag = document.createElement("div")
+            added_flag.setAttribute("class", "added-flag")
+            added_flag.innerHTML = `<img src="flags/${countryFlag}" class="added-flag" />`
+            let added_text = document.createElement("div")
+            added_text.setAttribute("class", "addedCountryName")
+            added_text.innerHTML = countryName
+            countryRectangle.appendChild(added_flag)
+            countryRectangle.appendChild(added_text)
+            addedCountriesDiv.appendChild(countryRectangle)
+
+
             input_txt.value = ''
 
-            if (addedCountries.includes(countryName) == false) {
-                addedCountries.push(countryName)
-                console.log(addedCountries)
-                addedDiv.innerHTML += `<div class="addedCountryName">${countryName}</div>`
-                let newDiv = document.createElement("div")
-                newDiv.setAttribute("class", "addedCountry")
-                newDiv.innerHTML = `<img class="added-flag" src="flags/${countryFlag}">`
-                addedDiv.appendChild(newDiv)
-            }
-            else {
-                console.log(`${countryName} już jest w tablicy!`)
-            }
+
         }
         function clearCountryDivs() {
             let autocompleteDiv = document.getElementById("autocomplete")
