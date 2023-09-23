@@ -10,9 +10,7 @@
         <div id="autocomplete">
             <input type="text" id="countriesInput" onkeyup="showSuggestions()" />
         </div>
-        <div id="left-panel">
 
-        </div>
         <div id="added">
             <h1>Wybrane kraje</h1>
             <div id="added_flags">
@@ -22,9 +20,7 @@
                 <button >Zatwierdź kraje</button>
             </div>
         </div>
-        <div id="right-panel">
-            
-        </div>
+
     </div>
     <script>
         let addedCountries = []
@@ -37,12 +33,18 @@
             let input_txt = document.getElementById('countriesInput')
             countryRectangle.setAttribute("class", "singleCountryDiv")
             countryRectangle.setAttribute("id", countryName)
+            let closing_cross = document.createElement("div")
+            closing_cross.setAttribute("class", "close_it")
+            closing_cross.setAttribute("id", `close_${countryName}`)
+            closing_cross.innerHTML = "x"
+            countryRectangle.appendChild(closing_cross)
+
             let added_flag = document.createElement("div")
             added_flag.setAttribute("class", "added-flag")
             added_flag.innerHTML = `<img src="flags/${countryFlag}" class="added-flag" />`
             let added_text = document.createElement("div")
             added_text.setAttribute("class", "addedCountryName")
-            added_text.innerHTML = countryName
+            added_text.innerHTML = `${countryName}`
             countryRectangle.appendChild(added_flag)
             countryRectangle.appendChild(added_text)
             addedCountriesDiv.appendChild(countryRectangle)

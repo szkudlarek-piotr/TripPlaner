@@ -3,14 +3,18 @@
 body {
     background-color: brown;
 }
+
 #container {
     width: 60%;
     margin-left: auto;
     margin-right: auto;
+    display: block;
+
     border-left: 1px solid black;
     border-right: 1px solid black;
     min-height: 1000px;
 }
+
 input {
     border: 1px solid transparent;
     background-color: #f1f1f1;
@@ -97,10 +101,12 @@ h1 {
 .added-flag {
     width: 100px;
     display: block;
-    border: 1px solid black;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+}
+.added-flag>img {
+    border: 1px solid black;
 }
 .addedCountryName {
     display: block;
@@ -114,8 +120,26 @@ h1 {
     width: 30%;
     height: 120px;
     text-align: center;
+    padding-top: 10px;
     display: inline-block;
+}
+.singleCountryDiv:hover {
+    background-color: #990000;
 }
 .accept-button {
     text-align: center;
+}
+.close_it {
+    width: 20px;
+    height: 20px;
+    border-radius: 4px;
+    position: relative;
+    left: 165px;
+    top: 20px;
+    display: none;
+    border: 3px solid black;
+    z-index: 100;
+}
+.singleCountryDiv:hover>.close_it {
+    display: block;
 }
