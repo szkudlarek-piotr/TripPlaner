@@ -86,6 +86,7 @@ input[type=submit] {
     margin-top: 40px;
     margin-left: 20px;
     margin-right: 20px;
+    text-align: center;
 }
 h1 {
     text-align: center;
