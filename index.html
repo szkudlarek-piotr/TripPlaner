@@ -3,6 +3,7 @@
 
 <head>
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 </head>
 
 <body>
@@ -24,21 +25,27 @@
     </div>
     <script>
         let addedCountries = []
-
         function addCountry(countryName, countryFlag) {
+            console.log(addedCountries)
+            let input_txt = document.getElementById('countriesInput')
+            clearCountryDivs()
+            if (addedCountries.includes(countryName)) {
+                console.log("Ten kraj już został dodany")
+                input_txt.value = ''
+            }
+            else {
             const addedCountriesDiv = document.getElementById("added_flags")
             let countryRectangle = document.createElement("div")
             //I clear the sugestions
             clearCountryDivs()
             let input_txt = document.getElementById('countriesInput')
             countryRectangle.setAttribute("class", "singleCountryDiv")
-            countryRectangle.setAttribute("id", countryName)
-            let closing_cross = document.createElement("div")
+            countryRectangle.setAttribute("id", `rectange_${countryName}`)
+            let closing_cross = document.createElement("button")
             closing_cross.setAttribute("class", "close_it")
             closing_cross.setAttribute("id", `close_${countryName}`)
-            closing_cross.innerHTML = "x"
+            closing_cross.innerHTML = '<span class="material-symbols-outlined" id="close${countryName}">close</span>'
             countryRectangle.appendChild(closing_cross)
-
             let added_flag = document.createElement("div")
             added_flag.setAttribute("class", "added-flag")
             added_flag.innerHTML = `<img src="flags/${countryFlag}" class="added-flag" />`
@@ -48,10 +55,11 @@
             countryRectangle.appendChild(added_flag)
             countryRectangle.appendChild(added_text)
             addedCountriesDiv.appendChild(countryRectangle)
+            addedCountries.push(countryName)
 
-
+            //clea the input field
             input_txt.value = ''
-
+            }
 
         }
         function clearCountryDivs() {
