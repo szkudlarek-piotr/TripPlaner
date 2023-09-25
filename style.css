@@ -96,18 +96,12 @@ h1 {
     font-size: 10px;
     min-height: 140px;
 }
-.flags {
-    width: 100px;
-} 
 .added-flag {
-    width: 100px;
+    height: 60px;
     display: block;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
-}
-.added-flag>img {
-    border: 1px solid black;
 }
 .addedCountryName {
     display: block;
@@ -121,7 +115,7 @@ h1 {
     width: 30%;
     height: 120px;
     text-align: center;
-    padding-top: 10px;
+    padding-top: 25px;
     display: inline-block;
     position: relative;
 }
@@ -146,4 +140,7 @@ h1 {
 }
 .singleCountryDiv:hover>.closingCross {
     display: block;
+}
+.closingCross:hover {
+    cursor: pointer;
 }
