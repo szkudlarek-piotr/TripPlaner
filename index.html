@@ -41,10 +41,12 @@
             let input_txt = document.getElementById('countriesInput')
             countryRectangle.setAttribute("class", "singleCountryDiv")
             countryRectangle.setAttribute("id", `rectange_${countryName}`)
+            
             let closing_cross = document.createElement("button")
-            closing_cross.setAttribute("class", "close_it")
             closing_cross.setAttribute("id", `close_${countryName}`)
-            closing_cross.innerHTML = '<span class="material-symbols-outlined" id="close${countryName}">close</span>'
+            closing_cross.setAttribute("class", "closingCross")
+            closing_cross.innerHTML = '<span class="material-symbols-outlined">cancel</span>'
+            
             countryRectangle.appendChild(closing_cross)
             let added_flag = document.createElement("div")
             added_flag.setAttribute("class", "added-flag")

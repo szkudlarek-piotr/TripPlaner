@@ -123,6 +123,7 @@ h1 {
     text-align: center;
     padding-top: 10px;
     display: inline-block;
+    position: relative;
 }
 .singleCountryDiv:hover {
     background-color: #990000;
@@ -130,17 +131,19 @@ h1 {
 .accept-button {
     text-align: center;
 }
-.close_it {
-    width: 20px;
-    height: 20px;
-    border-radius: 4px;
-    position: relative;
-    left: 165px;
-    top: 20px;
-    display: none;
-    border: 3px solid black;
-    z-index: 100;
-}
+
 .singleCountryDiv:hover>.close_it {
+    display: block;
+}
+.closingCross {
+    position: absolute;
+    left: 205px;
+    top: 0px;
+    border: none;
+    padding: 0px;
+    display: none;
+    background-color: transparent;
+}
+.singleCountryDiv:hover>.closingCross {
     display: block;
 }
