@@ -67,20 +67,17 @@
             addedCountriesDiv.appendChild(countryRectangle)
             addedCountries.push(countryName)
 
-            //clea the input field
+            //clear the input field
             input_txt.value = ''
             }
-
         }
         function clearCountryDivs() {
             let autocompleteDiv = document.getElementById("autocomplete")
             let childrenArr = autocompleteDiv.children
             while (autocompleteDiv.childElementCount > 1) {
                 autocompleteDiv.lastChild.remove()
-            }
-            
-        } 
-
+            }     
+        }
         function displayData(countryDivs) {
             let autocompleteDiv = document.getElementById("autocomplete")
             let numberOfCountries = countryDivs.length
@@ -95,10 +92,8 @@
                 createdDiv.setAttribute("onclick", `addCountry("${name}", "${flagPath}")`)
                 createdDiv.innerHTML = innerContent
                 autocompleteDiv.appendChild(createdDiv)
-            }
-            
+            }      
         }
-
         function showSuggestions() {
             clearCountryDivs()
             let autocompleteDiv = document.getElementById("autocomplete")
@@ -108,14 +103,10 @@
                 suggestionsDiv.setAttribute("class", "autocomplete-items")
                 suggestionsDiv.setAttribute("id", "allCountriesSuggestions")
             }
-
             getCountriesDivs(displayData) 
         }
-
         function getCountriesDivs(callback) {
-
-            const input_txt = document.getElementById('countriesInput').value
-            
+            const input_txt = document.getElementById('countriesInput').value           
             if (input_txt.length > 2) {
                 let countryFlag = ""
                 const xhr = new XMLHttpRequest();
@@ -139,10 +130,8 @@
                         callback(countriesDivs)
                     }
                 };
-
             xhr.send(input_txt);
         }}
-
         function boldCountryName(inputText, countryName) {
             let capitalizedInput = inputText.toUpperCase()
             let capitalizedCountryName = countryName.toUpperCase()
@@ -156,5 +145,4 @@
         }
     </script>
 </body>
-
 </html>
