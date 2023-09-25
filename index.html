@@ -25,12 +25,19 @@
     </div>
     <script>
         let addedCountries = []
-        function addCountry(countryName, countryFlag) {
+        function country_deletion(countryName) {
+            let removed_rectangle = document.getElementById(`rectange_${countryName}`)           
+            let addedCountriesDiv = document.getElementById("added_flags")
+            addedCountriesDiv.removeChild(removed_rectangle)
+            addedCountries = addedCountries.filter(function(e) { return e !== countryName})
             console.log(addedCountries)
+
+        }
+        function addCountry(countryName, countryFlag) {
             let input_txt = document.getElementById('countriesInput')
             clearCountryDivs()
             if (addedCountries.includes(countryName)) {
-                console.log("Ten kraj już został dodany")
+                alert("Ten kraj już został dodany")
                 input_txt.value = ''
             }
             else {
@@ -46,6 +53,7 @@
             closing_cross.setAttribute("id", `close_${countryName}`)
             closing_cross.setAttribute("class", "closingCross")
             closing_cross.innerHTML = '<span class="material-symbols-outlined">cancel</span>'
+            closing_cross.setAttribute("onclick",`country_deletion("${countryName}")`)
             
             countryRectangle.appendChild(closing_cross)
             let added_flag = document.createElement("div")
